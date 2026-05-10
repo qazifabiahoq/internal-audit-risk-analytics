@@ -3,103 +3,73 @@
     "class": "High",
     "fpr": 0.0,
     "tpr": 0.0,
-    "auc": 0.999
+    "auc": 0.9992
   },
   {
     "class": "High",
     "fpr": 0.0,
-    "tpr": 0.1538,
-    "auc": 0.999
+    "tpr": 0.0128,
+    "auc": 0.9992
   },
   {
     "class": "High",
     "fpr": 0.0,
-    "tpr": 0.2821,
-    "auc": 0.999
+    "tpr": 0.0897,
+    "auc": 0.9992
   },
   {
     "class": "High",
     "fpr": 0.0,
-    "tpr": 0.3718,
-    "auc": 0.999
+    "tpr": 0.1154,
+    "auc": 0.9992
   },
   {
     "class": "High",
     "fpr": 0.0,
-    "tpr": 0.8846,
-    "auc": 0.999
+    "tpr": 0.9103,
+    "auc": 0.9992
   },
   {
     "class": "High",
     "fpr": 0.0045,
-    "tpr": 0.8846,
-    "auc": 0.999
+    "tpr": 0.9103,
+    "auc": 0.9992
   },
   {
     "class": "High",
     "fpr": 0.0045,
     "tpr": 0.9615,
-    "auc": 0.999
+    "auc": 0.9992
   },
   {
     "class": "High",
-    "fpr": 0.018,
+    "fpr": 0.009,
     "tpr": 0.9615,
-    "auc": 0.999
+    "auc": 0.9992
   },
   {
     "class": "High",
-    "fpr": 0.018,
-    "tpr": 1.0,
-    "auc": 0.999
+    "fpr": 0.009,
+    "tpr": 0.9872,
+    "auc": 0.9992
   },
   {
     "class": "High",
-    "fpr": 0.3829,
-    "tpr": 1.0,
-    "auc": 0.999
+    "fpr": 0.0225,
+    "tpr": 0.9872,
+    "auc": 0.9992
   },
   {
     "class": "High",
-    "fpr": 0.3964,
+    "fpr": 0.0225,
     "tpr": 1.0,
-    "auc": 0.999
-  },
-  {
-    "class": "High",
-    "fpr": 0.6216,
-    "tpr": 1.0,
-    "auc": 0.999
-  },
-  {
-    "class": "High",
-    "fpr": 0.6396,
-    "tpr": 1.0,
-    "auc": 0.999
-  },
-  {
-    "class": "High",
-    "fpr": 0.6441,
-    "tpr": 1.0,
-    "auc": 0.999
-  },
-  {
-    "class": "High",
-    "fpr": 0.6667,
-    "tpr": 1.0,
-    "auc": 0.999
-  },
-  {
-    "class": "High",
-    "fpr": 0.6892,
-    "tpr": 1.0,
-    "auc": 0.999
+    "auc": 0.9992
   },
   {
     "class": "High",
     "fpr": 1.0,
     "tpr": 1.0,
-    "auc": 0.999
+    "auc": 0.9992
   },
   {
     "class": "Low",
@@ -116,30 +86,30 @@
   {
     "class": "Low",
     "fpr": 0.0,
-    "tpr": 0.9111,
+    "tpr": 0.9222,
     "auc": 0.9993
   },
   {
     "class": "Low",
     "fpr": 0.0048,
-    "tpr": 0.9111,
+    "tpr": 0.9222,
     "auc": 0.9993
   },
   {
     "class": "Low",
     "fpr": 0.0048,
-    "tpr": 0.9778,
+    "tpr": 0.9556,
     "auc": 0.9993
   },
   {
     "class": "Low",
-    "fpr": 0.0143,
-    "tpr": 0.9778,
+    "fpr": 0.0095,
+    "tpr": 0.9556,
     "auc": 0.9993
   },
   {
     "class": "Low",
-    "fpr": 0.0143,
+    "fpr": 0.0095,
     "tpr": 0.9889,
     "auc": 0.9993
   },
@@ -152,30 +122,6 @@
   {
     "class": "Low",
     "fpr": 0.019,
-    "tpr": 1.0,
-    "auc": 0.9993
-  },
-  {
-    "class": "Low",
-    "fpr": 0.6095,
-    "tpr": 1.0,
-    "auc": 0.9993
-  },
-  {
-    "class": "Low",
-    "fpr": 0.619,
-    "tpr": 1.0,
-    "auc": 0.9993
-  },
-  {
-    "class": "Low",
-    "fpr": 0.7476,
-    "tpr": 1.0,
-    "auc": 0.9993
-  },
-  {
-    "class": "Low",
-    "fpr": 0.7571,
     "tpr": 1.0,
     "auc": 0.9993
   },
@@ -189,150 +135,84 @@
     "class": "Medium",
     "fpr": 0.0,
     "tpr": 0.0,
-    "auc": 0.9971
+    "auc": 0.9976
   },
   {
     "class": "Medium",
     "fpr": 0.0,
     "tpr": 0.0076,
-    "auc": 0.9971
+    "auc": 0.9976
   },
   {
     "class": "Medium",
     "fpr": 0.0,
-    "tpr": 0.9394,
-    "auc": 0.9971
+    "tpr": 0.9318,
+    "auc": 0.9976
   },
   {
     "class": "Medium",
-    "fpr": 0.0179,
-    "tpr": 0.9394,
-    "auc": 0.9971
+    "fpr": 0.0119,
+    "tpr": 0.9318,
+    "auc": 0.9976
   },
   {
     "class": "Medium",
-    "fpr": 0.0179,
-    "tpr": 0.9545,
-    "auc": 0.9971
+    "fpr": 0.0119,
+    "tpr": 0.9697,
+    "auc": 0.9976
   },
   {
     "class": "Medium",
-    "fpr": 0.0238,
-    "tpr": 0.9545,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.0238,
-    "tpr": 0.9621,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.0298,
-    "tpr": 0.9621,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.0298,
-    "tpr": 0.9773,
-    "auc": 0.9971
+    "fpr": 0.0357,
+    "tpr": 0.9697,
+    "auc": 0.9976
   },
   {
     "class": "Medium",
     "fpr": 0.0357,
     "tpr": 0.9773,
-    "auc": 0.9971
+    "auc": 0.9976
   },
   {
     "class": "Medium",
-    "fpr": 0.0357,
-    "tpr": 0.9848,
-    "auc": 0.9971
+    "fpr": 0.0476,
+    "tpr": 0.9773,
+    "auc": 0.9976
   },
   {
     "class": "Medium",
-    "fpr": 0.0952,
+    "fpr": 0.0476,
     "tpr": 0.9848,
-    "auc": 0.9971
+    "auc": 0.9976
+  },
+  {
+    "class": "Medium",
+    "fpr": 0.0774,
+    "tpr": 0.9848,
+    "auc": 0.9976
+  },
+  {
+    "class": "Medium",
+    "fpr": 0.0774,
+    "tpr": 0.9924,
+    "auc": 0.9976
   },
   {
     "class": "Medium",
     "fpr": 0.0952,
     "tpr": 0.9924,
-    "auc": 0.9971
+    "auc": 0.9976
   },
   {
     "class": "Medium",
-    "fpr": 0.1369,
-    "tpr": 0.9924,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.1369,
+    "fpr": 0.0952,
     "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.7381,
-    "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.75,
-    "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.7798,
-    "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.8214,
-    "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.8452,
-    "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.8571,
-    "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.875,
-    "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.8869,
-    "tpr": 1.0,
-    "auc": 0.9971
-  },
-  {
-    "class": "Medium",
-    "fpr": 0.9286,
-    "tpr": 1.0,
-    "auc": 0.9971
+    "auc": 0.9976
   },
   {
     "class": "Medium",
     "fpr": 1.0,
     "tpr": 1.0,
-    "auc": 0.9971
+    "auc": 0.9976
   }
 ]

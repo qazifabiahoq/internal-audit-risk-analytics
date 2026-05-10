@@ -276,6 +276,10 @@ def phase1_clean(df: pd.DataFrame) -> pd.DataFrame:
     # High-risk findings which are exactly what the model needs to learn.
     numeric_cols = df.select_dtypes(include=["float64", "int64"]).columns.tolist()
     for col in numeric_cols:
+        # Skip binary indicator columns: IQR = 0 would incorrectly zero them out
+        if df[col].nunique() <= 2:
+            info(f"  '{col}': binary column, skipping outlier capping")
+            continue
         q1, q3 = df[col].quantile([0.25, 0.75])
         iqr = q3 - q1
         lower, upper = q1 - 1.5 * iqr, q3 + 1.5 * iqr
@@ -952,7 +956,126 @@ def phase7_export(df_clean, target_col, eda_results, results_df,
     # ── roc_curve.json ─────────────────────────────────────────────────────
     save_json(roc_data, "roc_curve.json")
 
+    # ── audit_intelligence.json ───────────────────────────────────────────
+    _export_audit_intelligence(df_clean, target_col)
+
     info("All JSON files exported to public/data/")
+
+
+def _export_audit_intelligence(df: pd.DataFrame, target_col: str) -> None:
+    """
+    Pre-compute audit-specific aggregations for the Audit Intelligence tab.
+    All groupings are computed from the full cleaned dataset (not just the
+    500-row display sample) so that proportions are statistically meaningful.
+    """
+    risk_levels = ["High", "Medium", "Low"]
+
+    def risk_pivot(group_col: str) -> list:
+        """Cross-tabulate group_col against risk level, add total and highPct."""
+        ct = pd.crosstab(df[group_col].astype(str), df[target_col].astype(str))
+        for lvl in risk_levels:
+            if lvl not in ct.columns:
+                ct[lvl] = 0
+        ct = ct[risk_levels]
+        ct["total"] = ct.sum(axis=1)
+        ct["highPct"] = (ct["High"] / ct["total"] * 100).round(1)
+        rows = []
+        for idx, row in ct.iterrows():
+            rows.append({
+                "name":     idx,
+                "High":     int(row["High"]),
+                "Medium":   int(row["Medium"]),
+                "Low":      int(row["Low"]),
+                "total":    int(row["total"]),
+                "highPct":  float(row["highPct"]),
+            })
+        return sorted(rows, key=lambda x: x["highPct"], reverse=True)
+
+    dept_col    = next((c for c in df.columns if "department" in c), None)
+    type_col    = next((c for c in df.columns if "findingtype" in c or "finding_type" in c), None)
+    ctrl_col    = next((c for c in df.columns if "controltype" in c or "control_type" in c), None)
+    root_col    = next((c for c in df.columns if "rootcause" in c or "root_cause" in c), None)
+    status_col  = next((c for c in df.columns if c == "status"), None)
+    repeat_col  = next((c for c in df.columns if "repeat" in c), None)
+    sev_col     = next((c for c in df.columns if "severity" in c), None)
+    fin_col     = next((c for c in df.columns if "financial" in c), None)
+    days_col    = next((c for c in df.columns if "daysopen" in c or "days_open" in c), None)
+    mgmt_col    = next((c for c in df.columns if "mgmt" in c or "mgmtresponse" in c), None)
+
+    payload: dict = {}
+
+    if dept_col:
+        dept_data = risk_pivot(dept_col)
+        # Add avg financial impact per department
+        if fin_col:
+            avg_fin = df.groupby(dept_col)[fin_col].mean().round(0)
+            for row in dept_data:
+                row["avgFinancialImpact"] = float(avg_fin.get(row["name"], 0))
+        payload["departmentRisk"] = dept_data
+
+    if type_col:
+        payload["findingTypeRisk"] = risk_pivot(type_col)
+
+    if ctrl_col:
+        payload["controlTypeRisk"] = risk_pivot(ctrl_col)
+
+    if root_col:
+        payload["rootCauseRisk"] = risk_pivot(root_col)
+
+    # Status breakdown
+    if status_col:
+        vc = df[status_col].astype(str).value_counts()
+        total = len(df)
+        payload["statusBreakdown"] = [
+            {"status": k, "count": int(v), "pct": round(int(v) / total * 100, 1)}
+            for k, v in vc.items()
+        ]
+
+    # Repeat finding analysis
+    if repeat_col:
+        repeat_df = pd.to_numeric(df[repeat_col], errors="coerce").fillna(0).astype(int)
+        repeat_mask = repeat_df == 1
+        new_mask    = repeat_df == 0
+        risk_col    = df[target_col].astype(str)
+
+        repeat_high = (risk_col[repeat_mask] == "High").sum()
+        new_high    = (risk_col[new_mask]    == "High").sum()
+
+        payload["repeatFinding"] = {
+            "repeatCount":    int(repeat_mask.sum()),
+            "newCount":       int(new_mask.sum()),
+            "repeatHighPct":  round(repeat_high / max(repeat_mask.sum(), 1) * 100, 1),
+            "newHighPct":     round(new_high    / max(new_mask.sum(),    1) * 100, 1),
+        }
+
+    # Average key metrics by risk level
+    metric_cols = {c: c for c in [sev_col, fin_col, days_col, mgmt_col] if c}
+    if metric_cols:
+        avg_rows = []
+        for lvl in risk_levels:
+            subset = df[df[target_col].astype(str) == lvl]
+            row: dict = {"riskLevel": lvl}
+            for col in metric_cols:
+                row[col] = round(float(subset[col].mean()), 2)
+            avg_rows.append(row)
+        payload["avgMetricsByRisk"] = avg_rows
+
+    # Overdue rate by department (relevant for audit follow-up KRI)
+    if dept_col and status_col:
+        overdue_df = df.copy()
+        overdue_df["_overdue"] = overdue_df[status_col].astype(str).str.lower() == "overdue"
+        grp = overdue_df.groupby(dept_col).agg(
+            total=("_overdue", "count"),
+            overdueCount=("_overdue", "sum"),
+        ).reset_index()
+        grp["overdueRate"] = (grp["overdueCount"] / grp["total"] * 100).round(1)
+        payload["overdueByDept"] = sorted(
+            grp.rename(columns={dept_col: "department"}).to_dict(orient="records"),
+            key=lambda x: x["overdueRate"], reverse=True
+        )
+
+    save_json(payload, "audit_intelligence.json")
+    info("Audit intelligence aggregations exported")
 
 
 # ══════════════════════════════════════════════════════════════════════════
