@@ -1,0 +1,182 @@
+[
+  {
+    "_quarter": "2021Q1",
+    "risklevel": "High",
+    "count": 22
+  },
+  {
+    "_quarter": "2021Q1",
+    "risklevel": "Low",
+    "count": 33
+  },
+  {
+    "_quarter": "2021Q1",
+    "risklevel": "Medium",
+    "count": 49
+  },
+  {
+    "_quarter": "2021Q2",
+    "risklevel": "High",
+    "count": 37
+  },
+  {
+    "_quarter": "2021Q2",
+    "risklevel": "Low",
+    "count": 49
+  },
+  {
+    "_quarter": "2021Q2",
+    "risklevel": "Medium",
+    "count": 52
+  },
+  {
+    "_quarter": "2021Q3",
+    "risklevel": "High",
+    "count": 36
+  },
+  {
+    "_quarter": "2021Q3",
+    "risklevel": "Low",
+    "count": 50
+  },
+  {
+    "_quarter": "2021Q3",
+    "risklevel": "Medium",
+    "count": 54
+  },
+  {
+    "_quarter": "2021Q4",
+    "risklevel": "High",
+    "count": 30
+  },
+  {
+    "_quarter": "2021Q4",
+    "risklevel": "Low",
+    "count": 36
+  },
+  {
+    "_quarter": "2021Q4",
+    "risklevel": "Medium",
+    "count": 57
+  },
+  {
+    "_quarter": "2022Q1",
+    "risklevel": "High",
+    "count": 32
+  },
+  {
+    "_quarter": "2022Q1",
+    "risklevel": "Low",
+    "count": 34
+  },
+  {
+    "_quarter": "2022Q1",
+    "risklevel": "Medium",
+    "count": 47
+  },
+  {
+    "_quarter": "2022Q2",
+    "risklevel": "High",
+    "count": 31
+  },
+  {
+    "_quarter": "2022Q2",
+    "risklevel": "Low",
+    "count": 33
+  },
+  {
+    "_quarter": "2022Q2",
+    "risklevel": "Medium",
+    "count": 53
+  },
+  {
+    "_quarter": "2022Q3",
+    "risklevel": "High",
+    "count": 34
+  },
+  {
+    "_quarter": "2022Q3",
+    "risklevel": "Low",
+    "count": 44
+  },
+  {
+    "_quarter": "2022Q3",
+    "risklevel": "Medium",
+    "count": 67
+  },
+  {
+    "_quarter": "2022Q4",
+    "risklevel": "High",
+    "count": 41
+  },
+  {
+    "_quarter": "2022Q4",
+    "risklevel": "Low",
+    "count": 33
+  },
+  {
+    "_quarter": "2022Q4",
+    "risklevel": "Medium",
+    "count": 66
+  },
+  {
+    "_quarter": "2023Q1",
+    "risklevel": "High",
+    "count": 34
+  },
+  {
+    "_quarter": "2023Q1",
+    "risklevel": "Low",
+    "count": 35
+  },
+  {
+    "_quarter": "2023Q1",
+    "risklevel": "Medium",
+    "count": 55
+  },
+  {
+    "_quarter": "2023Q2",
+    "risklevel": "High",
+    "count": 31
+  },
+  {
+    "_quarter": "2023Q2",
+    "risklevel": "Low",
+    "count": 31
+  },
+  {
+    "_quarter": "2023Q2",
+    "risklevel": "Medium",
+    "count": 48
+  },
+  {
+    "_quarter": "2023Q3",
+    "risklevel": "High",
+    "count": 30
+  },
+  {
+    "_quarter": "2023Q3",
+    "risklevel": "Low",
+    "count": 36
+  },
+  {
+    "_quarter": "2023Q3",
+    "risklevel": "Medium",
+    "count": 51
+  },
+  {
+    "_quarter": "2023Q4",
+    "risklevel": "High",
+    "count": 31
+  },
+  {
+    "_quarter": "2023Q4",
+    "risklevel": "Low",
+    "count": 38
+  },
+  {
+    "_quarter": "2023Q4",
+    "risklevel": "Medium",
+    "count": 60
+  }
+]
