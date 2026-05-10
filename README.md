@@ -31,7 +31,7 @@ This project addresses three specific problems that data analytics can solve for
 
 **Problem 2: Inconsistent risk judgments across audit engagements.** Without a shared quantitative framework, two auditors reviewing similar findings in different business units may reach different conclusions. A model trained on historical patterns brings consistency across integrated audits that span multiple departments.
 
-**Problem 3: No structured view of the control environment.** Audit teams often lack a consolidated view of which departments, control types, and root causes are driving the most risk. This project builds that view using data profiles and aggregation, giving leadership the context needed to define scope for future audit engagements and strengthen the overall control environment. Communicating these findings clearly across stakeholder groups requires both analytical depth and strong interpersonal communication skills, as the outputs are consumed by everyone from frontline auditors to the Audit Committee. The dashboard is designed so that anyone, not just data specialists, can read and act on the results, treating analytics as a client service to the internal audit function.
+**Problem 3: No structured view of the control environment.** Audit teams often lack a consolidated view of which departments, control types, and root causes are driving the most risk. This project builds that view using data profiles and aggregation, giving leadership the context needed to define scope for future audit engagements and strengthen the overall control environment.
 
 ---
 
