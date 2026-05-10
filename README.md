@@ -39,7 +39,7 @@ This project addresses three specific problems that data analytics can solve for
 
 ### Part 1: The Data Pipeline (Python)
 
-The pipeline runs in seven phases. No technical knowledge is needed to understand what each one does or why.
+The pipeline runs in seven phases.
 
 **Phase 1: Data cleaning.**
 The raw data was inspected for missing values, duplicates, and unusual entries. Missing numbers were replaced with the median value of that column rather than the average, because financial and audit data tends to be skewed by a small number of very large findings. Duplicates were removed. Extreme values were capped rather than deleted, because the most extreme findings are often the most important ones for the model to learn from.
@@ -78,26 +78,32 @@ The platform has three tabs:
 
 ## Key Findings
 
-**Finding 1: Random Forest achieved 97% accuracy and 99.9% ROC-AUC.**
-All six models performed well, but Random Forest was the clear winner. A ROC-AUC of 99.9% means the model correctly ranks a High-risk finding above a Low-risk one in 99.9% of cases. This level of performance makes the model suitable as a prioritisation tool in a real audit engagement workflow.
+**Finding 1: XGBoost was the best model with 97.3% accuracy and 99.8% ROC-AUC.**
+Six models were tested side by side. XGBoost came out on top. A ROC-AUC of 99.8% means that if you give the model one High-risk finding and one Low-risk finding at random, it will correctly identify which is riskier 99.8% of the time. Even the weakest model tested, K-Nearest Neighbours, still achieved 86.3% accuracy, which shows that the risk patterns in this dataset are strong and consistent across methods.
 
-**Finding 2: Financial impact and composite risk score drive over 55% of the model's predictions.**
-These two features carry the most weight in every tree in the Random Forest. This confirms that monetary exposure and overall severity are the primary signals for High-risk classification. Audit teams that currently focus on severity scores alone are likely underweighting financial impact in their manual risk assessments.
+**Finding 2: Two features alone account for nearly 70% of what the model uses to make decisions.**
+The composite risk score (a combination of severity and financial impact) accounts for 39.7% of the model's predictive weight. Financial impact on its own accounts for another 29.4%. Together they drive 69% of the classification. This tells audit teams something important: if a finding has a large financial exposure and a high severity score, the model will almost certainly flag it as High risk regardless of anything else.
 
-**Finding 3: Repeat findings are 2.4 times more likely to be High risk.**
-Out of 1,500 findings, 364 were repeat findings (previously identified issues that management had not sustainably resolved). Their High-risk rate was 46.4%, compared to 19.4% for new findings. This is one of the strongest actionable insights in the entire dataset and is a direct input for audit management decisions about follow-up frequency and escalation.
+**Finding 3: High-risk findings carry 17 times the financial exposure of Low-risk ones.**
+The average financial impact of a High-risk finding is $744,000. For a Low-risk finding it is $44,000. That is a 17x difference. In a portfolio of 1,500 findings, the 389 High-risk ones represent a disproportionate share of the total financial exposure. This makes accurate classification directly valuable in dollar terms for the bank.
 
-**Finding 4: Finance and Operations carry the highest risk concentration.**
-Both departments exceeded a 29% High-risk rate in their finding portfolios and had the highest average financial impact per finding. These two factors together make them the clearest candidates for increased audit frequency and tighter scope in the next audit planning cycle.
+**Finding 4: High-risk findings stay open 3.5 times longer and get slower management responses.**
+High-risk findings are open for an average of 96 days. Low-risk findings close in 27 days on average. That alone is a concern. But more striking is the management response time: High-risk findings wait an average of 18 days for management to respond, while Low-risk findings get a response in 5 days. The findings that pose the most risk to the bank are taking the longest to get attention.
 
-**Finding 5: Corrective controls are failing at a higher rate than preventive controls.**
-Corrective controls are ones that fix a problem after it has occurred. A high volume of High-risk findings linked to corrective control failures indicates the control environment is catching problems too late. Shifting investment toward preventive controls would reduce inherent risk at the source rather than managing it after the fact.
+**Finding 5: Repeat findings are 2.4 times more likely to be High risk than new ones.**
+Out of 1,500 findings, 364 were repeat findings, meaning problems that had already been identified in a prior audit and were supposed to have been fixed. Their High-risk rate was 46.4%, compared to 19.4% for findings appearing for the first time. A control gap that keeps coming back is a much more serious signal than a new one, and this data confirms that quantitatively.
 
-**Finding 6: Overdue findings are concentrated in specific departments.**
-Operations had the highest overdue rate of any department. Overdue findings represent ongoing and growing audit exposure. They are also a direct KRI that should be reported to senior management and the Audit Committee. The longer a finding stays open, the more likely it is to escalate in risk level.
+**Finding 6: Finance, Operations, and Treasury all exceed 29% High-risk rates.**
+Three departments show nearly identical and elevated High-risk concentrations: Finance and Accounting at 29.2%, Operations at 29.2%, and Treasury and Markets at 29.0%. Operations also carries the highest overdue rate at 14.6%, meaning its findings are both high in risk and slow to be resolved. These three departments together represent the clearest case for increased audit frequency in the next planning cycle.
 
-**Finding 7: Fraud Risk and Compliance Breach finding types produce the highest High-risk rates.**
-These categories carry regulatory and reputational exposure that goes beyond financial impact. They should anchor the continuous monitoring and auditing program and drive the threshold settings for real-time risk alerts.
+**Finding 7: Corrective controls produce more High-risk findings than preventive ones.**
+Corrective controls fix problems after they have already happened. Preventive controls stop problems before they occur. The data shows corrective controls have a 28.1% High-risk rate versus 23.6% for preventive controls. The gap matters because it tells audit leadership that the control environment is catching failures too late. More investment in preventive controls would reduce the volume of findings at the source rather than just cleaning them up afterward.
+
+**Finding 8: Fraud Risk findings have the highest High-risk rate of any finding type at 32.5%.**
+Fraud Risk findings are classified as High risk 32.5% of the time, the highest of any category. Compliance Breach is second at 29.5% and Data Quality Issues third at 28.3%. Data quality is worth noting separately because quality problems in banking data can have systemic downstream effects on reporting, risk models, and regulatory submissions, making them more serious than the finding label alone might suggest.
+
+**Finding 9: 10.3% of all findings are overdue, and 56% are not yet closed.**
+Only 44% of the 1,500 findings have been fully remediated. 22.1% are open, 23.6% are in progress, and 10.3% are overdue. That means more than half the audit portfolio remains active. The overdue bucket is particularly important because those findings have missed their agreed deadline, which is a direct KRI that should be escalated to senior management and reported to the Audit Committee.
 
 ---
 
