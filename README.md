@@ -39,7 +39,7 @@ This project addresses three specific problems that data analytics can solve for
 
 ### Part 1: The Data Pipeline (Python)
 
-The pipeline runs in seven phases. No technical knowledge is needed to understand what each one does or why.
+The pipeline runs in seven phases.
 
 **Phase 1: Data cleaning.**
 The raw data was inspected for missing values, duplicates, and unusual entries. Missing numbers were replaced with the median value of that column rather than the average, because financial and audit data tends to be skewed by a small number of very large findings. Duplicates were removed. Extreme values were capped rather than deleted, because the most extreme findings are often the most important ones for the model to learn from.
