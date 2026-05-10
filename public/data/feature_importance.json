@@ -1,0 +1,52 @@
+[
+  {
+    "feature": "financialimpactusd",
+    "importance": 0.29813,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "risk_score_composite",
+    "importance": 0.26013,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "severityscore",
+    "importance": 0.1688,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "daysopen",
+    "importance": 0.128,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "mgmtresponsedays",
+    "importance": 0.06742,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "auditorexperienceyrs",
+    "importance": 0.03094,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "status_Overdue",
+    "importance": 0.00657,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "status_Open",
+    "importance": 0.00643,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "duedate_month",
+    "importance": 0.00625,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "auditdate_month",
+    "importance": 0.00606,
+    "method": "Feature Importance"
+  }
+]

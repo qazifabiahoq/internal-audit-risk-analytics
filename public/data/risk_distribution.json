@@ -1,0 +1,17 @@
+[
+  {
+    "riskLevel": "Medium",
+    "count": 659,
+    "pct": 43.9
+  },
+  {
+    "riskLevel": "Low",
+    "count": 452,
+    "pct": 30.1
+  },
+  {
+    "riskLevel": "High",
+    "count": 389,
+    "pct": 25.9
+  }
+]
