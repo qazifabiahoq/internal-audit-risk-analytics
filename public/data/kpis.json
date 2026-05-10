@@ -2,9 +2,9 @@
   "totalFindings": 1500,
   "highRiskPct": 25.9,
   "highRiskCount": 389,
-  "bestModelName": "Random Forest",
-  "bestModelAccuracy": 0.97,
-  "bestModelF1": 0.97,
+  "bestModelName": "XGBoost",
+  "bestModelAccuracy": 0.9733,
+  "bestModelF1": 0.9734,
   "flaggedCount": 389,
   "lastUpdated": "2026-05-10"
 }

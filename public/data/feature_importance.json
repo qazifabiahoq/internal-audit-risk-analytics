@@ -1,52 +1,52 @@
 [
   {
-    "feature": "financialimpactusd",
-    "importance": 0.29813,
-    "method": "Feature Importance"
-  },
-  {
     "feature": "risk_score_composite",
-    "importance": 0.26013,
+    "importance": 0.39701,
     "method": "Feature Importance"
   },
   {
-    "feature": "severityscore",
-    "importance": 0.1688,
+    "feature": "financialimpactusd",
+    "importance": 0.29396,
     "method": "Feature Importance"
   },
   {
     "feature": "daysopen",
-    "importance": 0.128,
+    "importance": 0.04202,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "severityscore",
+    "importance": 0.03017,
     "method": "Feature Importance"
   },
   {
     "feature": "mgmtresponsedays",
-    "importance": 0.06742,
+    "importance": 0.02909,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "department_Finance & Accounting",
+    "importance": 0.02194,
     "method": "Feature Importance"
   },
   {
     "feature": "auditorexperienceyrs",
-    "importance": 0.03094,
+    "importance": 0.01876,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "findingtype_Operational Risk",
+    "importance": 0.01805,
+    "method": "Feature Importance"
+  },
+  {
+    "feature": "status_In Progress",
+    "importance": 0.01746,
     "method": "Feature Importance"
   },
   {
     "feature": "status_Overdue",
-    "importance": 0.00657,
-    "method": "Feature Importance"
-  },
-  {
-    "feature": "status_Open",
-    "importance": 0.00643,
-    "method": "Feature Importance"
-  },
-  {
-    "feature": "duedate_month",
-    "importance": 0.00625,
-    "method": "Feature Importance"
-  },
-  {
-    "feature": "auditdate_month",
-    "importance": 0.00606,
+    "importance": 0.01735,
     "method": "Feature Importance"
   }
 ]

@@ -1,0 +1,303 @@
+{
+  "departmentRisk": [
+    {
+      "name": "Finance & Accounting",
+      "High": 56,
+      "Medium": 69,
+      "Low": 67,
+      "total": 192,
+      "highPct": 29.2,
+      "avgFinancialImpact": 300498.0
+    },
+    {
+      "name": "Operations",
+      "High": 54,
+      "Medium": 87,
+      "Low": 44,
+      "total": 185,
+      "highPct": 29.2,
+      "avgFinancialImpact": 338965.0
+    },
+    {
+      "name": "Treasury & Markets",
+      "High": 54,
+      "Medium": 82,
+      "Low": 50,
+      "total": 186,
+      "highPct": 29.0,
+      "avgFinancialImpact": 328661.0
+    },
+    {
+      "name": "Retail Banking",
+      "High": 50,
+      "Medium": 79,
+      "Low": 66,
+      "total": 195,
+      "highPct": 25.6,
+      "avgFinancialImpact": 297067.0
+    },
+    {
+      "name": "Risk Management",
+      "High": 48,
+      "Medium": 90,
+      "Low": 52,
+      "total": 190,
+      "highPct": 25.3,
+      "avgFinancialImpact": 313863.0
+    },
+    {
+      "name": "Commercial Banking",
+      "High": 54,
+      "Medium": 99,
+      "Low": 63,
+      "total": 216,
+      "highPct": 25.0,
+      "avgFinancialImpact": 290922.0
+    },
+    {
+      "name": "IT & Cybersecurity",
+      "High": 37,
+      "Medium": 75,
+      "Low": 52,
+      "total": 164,
+      "highPct": 22.6,
+      "avgFinancialImpact": 288526.0
+    },
+    {
+      "name": "Compliance & Regulatory",
+      "High": 36,
+      "Medium": 78,
+      "Low": 58,
+      "total": 172,
+      "highPct": 20.9,
+      "avgFinancialImpact": 268630.0
+    }
+  ],
+  "findingTypeRisk": [
+    {
+      "name": "Fraud Risk",
+      "High": 63,
+      "Medium": 78,
+      "Low": 53,
+      "total": 194,
+      "highPct": 32.5
+    },
+    {
+      "name": "Compliance Breach",
+      "High": 57,
+      "Medium": 78,
+      "Low": 58,
+      "total": 193,
+      "highPct": 29.5
+    },
+    {
+      "name": "Data Quality Issue",
+      "High": 56,
+      "Medium": 82,
+      "Low": 60,
+      "total": 198,
+      "highPct": 28.3
+    },
+    {
+      "name": "IT / Cyber Risk",
+      "High": 54,
+      "Medium": 80,
+      "Low": 69,
+      "total": 203,
+      "highPct": 26.6
+    },
+    {
+      "name": "Model Risk",
+      "High": 54,
+      "Medium": 92,
+      "Low": 60,
+      "total": 206,
+      "highPct": 26.2
+    },
+    {
+      "name": "Process Gap",
+      "High": 41,
+      "Medium": 87,
+      "Low": 43,
+      "total": 171,
+      "highPct": 24.0
+    },
+    {
+      "name": "Control Deficiency",
+      "High": 35,
+      "Medium": 70,
+      "Low": 54,
+      "total": 159,
+      "highPct": 22.0
+    },
+    {
+      "name": "Operational Risk",
+      "High": 29,
+      "Medium": 92,
+      "Low": 55,
+      "total": 176,
+      "highPct": 16.5
+    }
+  ],
+  "controlTypeRisk": [
+    {
+      "name": "Corrective",
+      "High": 143,
+      "Medium": 229,
+      "Low": 136,
+      "total": 508,
+      "highPct": 28.1
+    },
+    {
+      "name": "Detective",
+      "High": 122,
+      "Medium": 195,
+      "Low": 149,
+      "total": 466,
+      "highPct": 26.2
+    },
+    {
+      "name": "Preventive",
+      "High": 124,
+      "Medium": 235,
+      "Low": 167,
+      "total": 526,
+      "highPct": 23.6
+    }
+  ],
+  "rootCauseRisk": [
+    {
+      "name": "People",
+      "High": 102,
+      "Medium": 150,
+      "Low": 113,
+      "total": 365,
+      "highPct": 27.9
+    },
+    {
+      "name": "Process",
+      "High": 96,
+      "Medium": 156,
+      "Low": 99,
+      "total": 351,
+      "highPct": 27.4
+    },
+    {
+      "name": "External",
+      "High": 102,
+      "Medium": 178,
+      "Low": 127,
+      "total": 407,
+      "highPct": 25.1
+    },
+    {
+      "name": "Technology",
+      "High": 89,
+      "Medium": 175,
+      "Low": 113,
+      "total": 377,
+      "highPct": 23.6
+    }
+  ],
+  "statusBreakdown": [
+    {
+      "status": "Closed",
+      "count": 660,
+      "pct": 44.0
+    },
+    {
+      "status": "In Progress",
+      "count": 354,
+      "pct": 23.6
+    },
+    {
+      "status": "Open",
+      "count": 331,
+      "pct": 22.1
+    },
+    {
+      "status": "Overdue",
+      "count": 155,
+      "pct": 10.3
+    }
+  ],
+  "repeatFinding": {
+    "repeatCount": 364,
+    "newCount": 1136,
+    "repeatHighPct": 46.4,
+    "newHighPct": 19.4
+  },
+  "avgMetricsByRisk": [
+    {
+      "riskLevel": "High",
+      "severityscore": 7.5,
+      "financialimpactusd": 744282.05,
+      "daysopen": 96.34,
+      "mgmtresponsedays": 17.57
+    },
+    {
+      "riskLevel": "Medium",
+      "severityscore": 4.9,
+      "financialimpactusd": 221644.12,
+      "daysopen": 53.04,
+      "mgmtresponsedays": 9.58
+    },
+    {
+      "riskLevel": "Low",
+      "severityscore": 2.83,
+      "financialimpactusd": 43959.69,
+      "daysopen": 27.36,
+      "mgmtresponsedays": 5.25
+    }
+  ],
+  "overdueByDept": [
+    {
+      "department": "Operations",
+      "total": 185,
+      "overdueCount": 27,
+      "overdueRate": 14.6
+    },
+    {
+      "department": "Finance & Accounting",
+      "total": 192,
+      "overdueCount": 25,
+      "overdueRate": 13.0
+    },
+    {
+      "department": "IT & Cybersecurity",
+      "total": 164,
+      "overdueCount": 20,
+      "overdueRate": 12.2
+    },
+    {
+      "department": "Commercial Banking",
+      "total": 216,
+      "overdueCount": 25,
+      "overdueRate": 11.6
+    },
+    {
+      "department": "Compliance & Regulatory",
+      "total": 172,
+      "overdueCount": 18,
+      "overdueRate": 10.5
+    },
+    {
+      "department": "Retail Banking",
+      "total": 195,
+      "overdueCount": 15,
+      "overdueRate": 7.7
+    },
+    {
+      "department": "Treasury & Markets",
+      "total": 186,
+      "overdueCount": 14,
+      "overdueRate": 7.5
+    },
+    {
+      "department": "Risk Management",
+      "total": 190,
+      "overdueCount": 11,
+      "overdueRate": 5.8
+    }
+  ]
+}
