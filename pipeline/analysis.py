@@ -71,133 +71,32 @@ def save_json(obj, filename: str) -> None:
 
 def load_data() -> pd.DataFrame:
     """
-    Attempt to load the Kaggle dataset via kagglehub.
-    Falls back to a realistic synthetic dataset if Kaggle credentials are
-    not configured in this environment (e.g. CI / Vercel build).
-
-    Synthetic data is generated to match the column structure and
-    statistical properties of the real audit-finding dataset so that
-    every downstream phase runs identically.
+    Load the real Kaggle audit-finding dataset via kagglehub. Requires
+    KAGGLE_USERNAME and KAGGLE_KEY to be set (e.g. as GitHub Actions
+    secrets, or in ~/.kaggle/kaggle.json for a local run). There is no
+    synthetic fallback: if the real dataset can't be loaded, the pipeline
+    must fail loudly rather than export fabricated numbers.
     """
     banner("DATA LOADING")
 
-    try:
-        import kagglehub
-        from kagglehub import KaggleDatasetAdapter
+    import kagglehub
+    from kagglehub import KaggleDatasetAdapter
 
-        info("Attempting Kaggle download via kagglehub ...")
-        df = kagglehub.load_dataset(
-            KaggleDatasetAdapter.PANDAS,
-            "dimejikazeem/auditfinding",
-            "",
+    if not (os.environ.get("KAGGLE_USERNAME") and os.environ.get("KAGGLE_KEY")):
+        raise RuntimeError(
+            "KAGGLE_USERNAME / KAGGLE_KEY are not set. Get an API token from "
+            "https://www.kaggle.com/settings -> API -> Create New Token, then "
+            "export KAGGLE_USERNAME and KAGGLE_KEY (or add them as GitHub "
+            "Actions secrets) before running this pipeline."
         )
-        info(f"Kaggle dataset loaded. Shape: {df.shape}")
-        return df
 
-    except Exception as exc:
-        info(f"Kaggle load failed ({exc.__class__.__name__}: {exc})")
-        info("Falling back to synthetic audit-finding dataset ...")
-        return _generate_synthetic_data()
-
-
-def _generate_synthetic_data(n: int = 1_500, seed: int = 42) -> pd.DataFrame:
-    """
-    Generate a realistic synthetic audit-finding dataset.
-
-    Column design mirrors standard internal-audit data in a large bank and
-    is aligned with the KPIs tracked by Internal Audit Data Analytics teams:
-    risk level, finding type, control environment quality, remediation speed.
-    """
-    rng = np.random.default_rng(seed)
-
-    departments = [
-        "Retail Banking", "Commercial Banking", "Treasury & Markets",
-        "Risk Management", "Compliance & Regulatory", "IT & Cybersecurity",
-        "Operations", "Finance & Accounting",
-    ]
-    finding_types = [
-        "Control Deficiency", "Process Gap", "Data Quality Issue",
-        "Compliance Breach", "IT / Cyber Risk", "Operational Risk",
-        "Fraud Risk", "Model Risk",
-    ]
-    root_causes = ["People", "Process", "Technology", "External"]
-    control_types = ["Preventive", "Detective", "Corrective"]
-    statuses = ["Open", "Closed", "In Progress", "Overdue"]
-    repeat_vals = [0, 1]
-
-    # Risk level assignment with intentional class imbalance (realistic for audit)
-    risk_probs = [0.25, 0.45, 0.30]   # High / Medium / Low
-    risk_levels = rng.choice(["High", "Medium", "Low"], size=n, p=risk_probs)
-
-    # Derive correlated numeric features so ML models can learn real patterns
-    severity_base = {"High": 7.5, "Medium": 5.0, "Low": 2.8}
-    severity_scores = np.array([
-        np.clip(rng.normal(severity_base[r], 1.2), 1, 10) for r in risk_levels
-    ])
-
-    financial_base = {"High": 850_000, "Medium": 220_000, "Low": 45_000}
-    financial_impact = np.array([
-        max(0, rng.normal(financial_base[r], financial_base[r] * 0.4))
-        for r in risk_levels
-    ])
-
-    days_open_base = {"High": 95, "Medium": 55, "Low": 25}
-    days_open = np.array([
-        max(1, int(rng.normal(days_open_base[r], 20))) for r in risk_levels
-    ])
-
-    mgmt_response_base = {"High": 18, "Medium": 10, "Low": 5}
-    mgmt_response_days = np.array([
-        max(1, int(rng.normal(mgmt_response_base[r], 5))) for r in risk_levels
-    ])
-
-    # Status is correlated: High-risk findings more often Overdue/Open
-    status_weights = {
-        "High":   [0.35, 0.20, 0.25, 0.20],
-        "Medium": [0.25, 0.40, 0.25, 0.10],
-        "Low":    [0.10, 0.70, 0.18, 0.02],
-    }
-    statuses_col = np.array([
-        rng.choice(statuses, p=status_weights[r]) for r in risk_levels
-    ])
-
-    # Repeat findings are more common in High-risk departments
-    repeat_probs = {"High": 0.45, "Medium": 0.22, "Low": 0.08}
-    repeat_finding = np.array([
-        int(rng.random() < repeat_probs[r]) for r in risk_levels
-    ])
-
-    # Auditor experience inversely correlated with finding severity
-    auditor_exp = np.array([
-        max(1, int(rng.normal(8 if r == "High" else 12, 3))) for r in risk_levels
-    ])
-
-    # Audit dates spread across 3 years
-    base_date = pd.Timestamp("2021-01-01")
-    audit_dates = pd.to_datetime(
-        [base_date + pd.Timedelta(days=int(rng.integers(0, 1095))) for _ in range(n)]
+    info("Downloading dataset from Kaggle via kagglehub ...")
+    df = kagglehub.load_dataset(
+        KaggleDatasetAdapter.PANDAS,
+        "dimejikazeem/auditfinding",
+        "",
     )
-    due_dates = audit_dates + pd.to_timedelta(days_open, unit="D")
-
-    df = pd.DataFrame({
-        "FindingID":             [f"AF-{1000 + i}" for i in range(n)],
-        "Department":            rng.choice(departments, size=n),
-        "RiskLevel":             risk_levels,
-        "FindingType":           rng.choice(finding_types, size=n),
-        "Status":                statuses_col,
-        "AuditDate":             audit_dates,
-        "DueDate":               due_dates,
-        "DaysOpen":              days_open,
-        "RepeatFinding":         repeat_finding,
-        "SeverityScore":         np.round(severity_scores, 2),
-        "RootCause":             rng.choice(root_causes, size=n),
-        "ControlType":           rng.choice(control_types, size=n),
-        "FinancialImpactUSD":    np.round(financial_impact, 2),
-        "AuditorExperienceYrs":  auditor_exp,
-        "MgmtResponseDays":      mgmt_response_days,
-    })
-
-    info(f"Synthetic dataset generated. Shape: {df.shape}")
+    info(f"Kaggle dataset loaded. Shape: {df.shape}")
     return df
 
 
